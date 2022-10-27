@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import ContentBox from '@/components/elements/ContentBox';
 import ActivityLogContainer from './activity/ActivityLogContainer';
 import PageContentBlock from '@/components/elements/PageContentBlock';
-import UpdatePasswordForm from '@/components/dashboard/forms/UpdatePasswordForm';
+import ResetPasswordForm from '@/components/dashboard/forms/ResetPasswordForm';
 import ConfigureTwoFactorForm from '@/components/dashboard/forms/ConfigureTwoFactorForm';
 
 const Container = styled.div`
@@ -30,8 +30,8 @@ export default () => (
         <h3 className={'j-left text-2xl text-neutral-500'}>Manage account logs and authentication.</h3>
         <Container css={tw`lg:grid lg:grid-cols-3 my-10`}>
             <div css={tw`flex-none w-full col-span-1`}>
-                <ContentBox className={'j-right'} title={'Update Password'} showFlashes={'account:password'}>
-                    <UpdatePasswordForm />
+                <ContentBox className={'j-right'} title={'Reset Password'} showFlashes={'account:password'}>
+                    <ResetPasswordForm />
                 </ContentBox>
                 <ContentBox className={'j-right'} title={'Setup 2FA'} css={tw`mt-8`} showFlashes={'account:2fa'}>
                     <ConfigureTwoFactorForm />

@@ -11,10 +11,12 @@ use Pterodactyl\Facades\Activity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Hashing\Hasher;
+use Pterodactyl\Notifications\ResetPassword;
 use Pterodactyl\Services\Users\UserUpdateService;
 use Pterodactyl\Transformers\Api\Client\AccountTransformer;
 use Pterodactyl\Http\Requests\Api\Client\Account\UpdateEmailRequest;
-use Pterodactyl\Http\Requests\Api\Client\Account\UpdatePasswordRequest;
+use Pterodactyl\Http\Requests\Api\Client\Account\ResetPasswordRequest;
 use Pterodactyl\Http\Requests\Api\Client\Account\UpdateUsernameRequest;
 
 class AccountController extends ClientApiController
@@ -22,7 +24,7 @@ class AccountController extends ClientApiController
     /**
      * AccountController constructor.
      */
-    public function __construct(private AuthManager $manager, private UserUpdateService $updateService)
+    public function __construct(private AuthManager $manager, private UserUpdateService $updateService, private Hasher $hasher)
     {
         parent::__construct();
     }
@@ -57,20 +59,30 @@ class AccountController extends ClientApiController
      *
      * @throws \Throwable
      */
-    public function updatePassword(UpdatePasswordRequest $request): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
-        $user = $this->updateService->handle($request->user(), $request->validated());
+        $user = $request->user();
 
-        $guard = $this->manager->guard();
         // If you do not update the user in the session you'll end up working with a
         // cached copy of the user that does not include the updated password. Do this
         // to correctly store the new user details in the guard and allow the logout
         // other devices functionality to work.
-        $guard->setUser($user);
+        $guard = $this->manager->guard()->setUser($user);
 
         // This method doesn't exist in the stateless Sanctum world.
         if (method_exists($guard, 'logoutOtherDevices')) {
-            $guard->logoutOtherDevices($request->input('password'));
+            $guard->logoutOtherDevices($user->password);
+        }
+
+        // Generate a random string to use as a temporary password
+        // while the user resets their own one.
+        $temporaryPassword = $this->generate(32);
+        $user->update(['password', $this->hasher->make($temporaryPassword)]);
+
+        try {
+            $user->notify(new ResetPassword($user, route('auth.login') . '/reset-password'));
+        } catch (\Exception $e) {
+            // If the email system isn't active, still let users reset passwords.
         }
 
         Activity::event('user:account.password-changed')->log();
@@ -131,5 +143,16 @@ class AccountController extends ClientApiController
         User::query()->where('id', '=', Auth::user()->id)->update(['discord_id' => $discord->id]);
 
         return redirect('/account');
+    }
+
+    /**
+     * Returns a string used for creating temporary passwords for
+     * users while they create a new one.
+     */
+    public function generate(int $length): string
+    {
+        $chars = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle($chars), 0, $length);
     }
 }
