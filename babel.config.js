@@ -5,7 +5,10 @@ module.exports = function (api) {
         'styled-components',
         'react-hot-loader/babel',
         '@babel/transform-runtime',
-        '@babel/transform-react-jsx',
+        ["@babel/transform-react-jsx", {
+            "pragma": "h",
+            "pragmaFrag": "Fragment",
+        }],
         '@babel/proposal-class-properties',
         '@babel/proposal-object-rest-spread',
         '@babel/proposal-optional-chaining',
