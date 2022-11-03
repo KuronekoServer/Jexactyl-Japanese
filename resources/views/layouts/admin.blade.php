@@ -100,7 +100,7 @@
                         <div class="col-xs-12">
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
-                                    There was an error validating the data provided.<br><br>
+                                    提供されたデータの検証でエラーが発生しました。<br><br>
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>

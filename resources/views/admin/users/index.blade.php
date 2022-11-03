@@ -35,10 +35,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Email</th>
-                            <th>Client Name</th>
-                            <th>Username</th>
-                            <th class="text-center">2FA</th>
+                            <th>メール</th>
+                            <th>ユーザー名称</th>
+                            <th>ユーザーネーム</th>
+                            <th class="text-center">2段階認証</th>
                             <th class="text-center">Approved</th>
                             <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="Servers that this user is marked as the owner of.">Servers Owned</span></th>
                             <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="Servers that this user can access because they are marked as a subuser.">Can Access</span></th>

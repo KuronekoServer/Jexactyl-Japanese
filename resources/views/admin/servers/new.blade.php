@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    New Server
+新サーバー
 @endsection
 
 @section('content-header')
-    <h1>Create Server<small>Add a new server to the panel.</small></h1>
+    <h1>サーバー作成<small>パネルに新しいサーバーを追加します。</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
-        <li class="active">Create Server</li>
+        <li><a href="{{ route('admin.index') }}">管理者</a></li>
+        <li><a href="{{ route('admin.servers') }}">サーバー</a></li>
+        <li class="active">サーバー作成</li>
     </ol>
 @endsection
 
@@ -19,35 +19,35 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Core Details</h3>
+                    <h3 class="box-title">コアの詳細</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="pName">Server Name</label>
+                            <label for="pName">サーバーネーム</label>
                             <input type="text" class="form-control" id="pName" name="name" value="{{ old('name') }}" placeholder="Server Name">
-                            <p class="small text-muted no-margin">Character limits: <code>a-z A-Z 0-9 _ - .</code> and <code>[Space]</code>.</p>
+                            <p class="small text-muted no-margin">文字数制限: <code>a-z A-Z 0-9 _ - .</code> and <code>[Space]</code>.</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="pUserId">Server Owner</label>
+                            <label for="pUserId">サーバーオーナー</label>
                             <select id="pUserId" name="owner_id" class="form-control" style="padding-left:0;"></select>
-                            <p class="small text-muted no-margin">Email address of the Server Owner.</p>
+                            <p class="small text-muted no-margin">サーバーオーナーのメールアドレス。</p>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="pDescription" class="control-label">Server Description</label>
+                            <label for="pDescription" class="control-label">サーバーの説明</label>
                             <textarea id="pDescription" name="description" rows="3" class="form-control">{{ old('description') }}</textarea>
-                            <p class="text-muted small">A brief description of this server.</p>
+                            <p class="text-muted small">このサーバーの簡単な説明。</p>
                         </div>
 
                         <div class="form-group">
                             <div class="checkbox checkbox-primary no-margin-bottom">
                                 <input id="pStartOnCreation" name="start_on_completion" type="checkbox" {{ \Pterodactyl\Helpers\Utilities::checked('start_on_completion', 1) }} />
-                                <label for="pStartOnCreation" class="strong">Start Server when Installed</label>
+                                <label for="pStartOnCreation" class="strong">インストール時にサーバーを起動する</label>
                             </div>
                         </div>
                     </div>
