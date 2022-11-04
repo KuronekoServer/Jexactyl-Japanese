@@ -61,12 +61,12 @@
             <div class="box">
                 <div class="overlay" id="allocationLoader" style="display:none;"><i class="fa fa-refresh fa-spin"></i></div>
                 <div class="box-header with-border">
-                    <h3 class="box-title">Allocation Management</h3>
+                    <h3 class="box-title">割り当て管理</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-sm-4">
-                        <label for="pNodeId">Node</label>
+                        <label for="pNodeId">ノード</label>
                         <select name="node_id" id="pNodeId" class="form-control">
                             @foreach($locations as $location)
                                 <optgroup label="{{ $location->long }} ({{ $location->short }})">
@@ -91,9 +91,9 @@
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="pAllocationAdditional">追加配分(s)</label>
+                        <label for="pAllocationAdditional">追加の割り当て(s)</label>
                         <select id="pAllocationAdditional" name="allocation_additional[]" class="form-control" multiple></select>
-                        <p class="small text-muted no-margin">作成時にこのサーバーに割り当てる追加の割り振り。</p>
+                        <p class="small text-muted no-margin">作成時にこのサーバーに割り当てる追加の割り当て。</p>
                     </div>
                 </div>
             </div>
@@ -117,11 +117,11 @@
                         <p class="text-muted small">このサーバーでユーザーが作成できるデータベースの総数。</p>
                     </div>
                     <div class="form-group col-xs-6">
-                        <label for="pAllocationLimit" class="control-label">Allocation Limit</label>
+                        <label for="pAllocationLimit" class="control-label">割り当て制限</label>
                         <div>
                             <input type="text" id="pAllocationLimit" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
+                        <p class="text-muted small">ユーザーがこのサーバーに対して作成できるアロケーションの総数。</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pBackupLimit" class="control-label">バックアップ上限</label>
@@ -150,8 +150,8 @@
                             <span class="input-group-addon">%</span>
                         </div>
 
-                        <p class="text-muted small">If you do not want to limit CPU usage, set the value to <code>0</code>. To determine a value, take the number of threads and multiply it by 100. For example, on a quad core system without hyperthreading <code>(4 * 100 = 400)</code> there is <code>400%</code> available. To limit a server to using half of a single thread, you would set the value to <code>50</code>. To allow a server to use up to two threads, set the value to <code>200</code>.<p>
-                    </div>
+                        <p class="text-muted small">CPU 使用率を制限しない場合は、値を <code>0</code> に設定します。 値を決定するには、スレッド数を取り、それを 100 倍します。たとえば、ハイパースレッディングなしのクアッドコアシステムでは <code>(4 * 100 = 400)</code> 、 <code>400%</code> が使用可能です。サーバーが1つのスレッドの半分を使用するように制限するには、値を <code>50</code>　に設定します。サーバーが最大2つのスレッドを使用できるようにするには、値を <code>200</code>に設定します。<p>
+                    </div>g
 
                     <div class="form-group col-xs-6">
                         <label for="pThreads">CPU Pinning</label>
@@ -160,7 +160,7 @@
                             <input type="text" id="pThreads" name="threads" class="form-control" value="{{ old('threads') }}" />
                         </div>
 
-                        <p class="text-muted small"><strong>Advanced:</strong> このプロセスを実行できる特定の CPU スレッドを入力するか、空白のままにしてすべてのスレッドを許可します。これは、単一の数値またはカンマ区切りのリストにすることができます。例： <code>0</code>, <code>0-1,3</code>, または <code>0,1,3,4</code>.</p>
+                        <p class="text-muted small"><strong>詳細:</strong> このプロセスを実行できる特定の CPU スレッドを入力するか、空白のままにしてすべてのスレッドを許可します。これは、単一の数値またはカンマ区切りのリストにすることができます。例： <code>0</code>, <code>0-1,3</code>, または <code>0,1,3,4</code>.</p>
                     </div>
                 </div>
 
@@ -207,7 +207,7 @@
                             <input type="text" id="pIO" name="io" class="form-control" value="{{ old('io', 500) }}" />
                         </div>
 
-                        <p class="text-muted small"><strong>Advanced</strong>: The IO performance of this server relative to other <em>running</em> containers on the system. Value should be between <code>10</code> and <code>1000</code>. Please see <a href="https://docs.docker.com/engine/reference/run/#block-io-bandwidth-blkio-constraint" target="_blank">this documentation</a> for more information about it.</p>
+                        <p class="text-muted small"><strong>詳細</strong>: システム上の他の <em>実行中</em> のコンテナと比較した、このサーバーのIOパフォーマンス。値は <code>10</code> から <code>1000</code> の間である必要があります。これについての詳細は、この <a href="https://docs.docker.com/engine/reference/run/#block-io-bandwidth-blkio-constraint" target="_blank">ドキュメント</a> を参照してください。</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">

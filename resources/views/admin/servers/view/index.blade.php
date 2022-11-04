@@ -7,8 +7,8 @@
 @section('content-header')
     <h1>{{ $server->name }}<small>{{ str_limit($server->description) }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+        <li><a href="{{ route('admin.index') }}">管理者</a></li>
+        <li><a href="{{ route('admin.servers') }}">サーバー</a></li>
         <li class="active">{{ $server->name }}</li>
     </ol>
 @endsection
@@ -21,16 +21,16 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Information</h3>
+                        <h3 class="box-title">インフォメーション</h3>
                     </div>
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
-                                <td>Internal Identifier</td>
+                                <td>内部識別子</td>
                                 <td><code>{{ $server->id }}</code></td>
                             </tr>
                             <tr>
-                                <td>External Identifier</td>
+                                <td>外部識別子</td>
                                 @if(is_null($server->external_id))
                                     <td><span class="label label-default">Not Set</span></td>
                                 @else
@@ -38,18 +38,18 @@
                                 @endif
                             </tr>
                             <tr>
-                                <td>UUID / Docker Container ID</td>
+                                <td>UUID / DockerコンテナID</td>
                                 <td><code>{{ $server->uuid }}</code></td>
                             </tr>
                             <tr>
-                                <td>Current Egg</td>
+                                <td>現在のEgg</td>
                                 <td>
                                     <a href="{{ route('admin.nests.view', $server->nest_id) }}">{{ $server->nest->name }}</a> ::
                                     <a href="{{ route('admin.nests.egg.view', $server->egg_id) }}">{{ $server->egg->name }}</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Server Name</td>
+                                <td>サーバー名</td>
                                 <td>{{ $server->name }}</td>
                             </tr>
                             <tr>
@@ -68,12 +68,12 @@
                                     @if($server->threads != null)
                                         <code>{{ $server->threads }}</code>
                                     @else
-                                        <span class="label label-default">Not Set</span>
+                                        <span class="label label-default">未設定</span>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td>Memory</td>
+                                <td>メモリ</td>
                                 <td>
                                     @if($server->memory === 0)
                                         <code>Unlimited</code>
@@ -82,7 +82,7 @@
                                     @endif
                                     /
                                     @if($server->swap === 0)
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">Not Set</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">未設定</code>
                                     @elseif($server->swap === -1)
                                         <code data-toggle="tooltip" data-placement="top" title="Swap Space">Unlimited</code>
                                     @else
@@ -91,7 +91,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Disk Space</td>
+                                <td>ディスク容量</td>
                                 <td>
                                     @if($server->disk === 0)
                                         <code>Unlimited</code>
@@ -101,11 +101,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Block IO Weight</td>
+                                <td>ブロックIO重量</td>
                                 <td><code>{{ $server->io }}</code></td>
                             </tr>
                             <tr>
-                                <td>Default Connection</td>
+                                <td>デフォルトの接続</td>
                                 <td><code>{{ $server->allocation->ip }}:{{ $server->allocation->port }}</code></td>
                             </tr>
                             <tr>
@@ -114,7 +114,7 @@
                                     @if($server->allocation->alias !== $server->allocation->ip)
                                         <code>{{ $server->allocation->alias }}:{{ $server->allocation->port }}</code>
                                     @else
-                                        <span class="label label-default">No Alias Assigned</span>
+                                        <span class="label label-default">エイリアスの指定なし</span>
                                     @endif
                                 </td>
                             </tr>
@@ -132,7 +132,7 @@
                         <div class="col-sm-12">
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3 class="no-margin">Suspended</h3>
+                                    <h3 class="no-margin">停止中</h3>
                                 </div>
                             </div>
                         </div>
@@ -150,11 +150,11 @@
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->user->username, 16) }}</h3>
-                                <p>Server Owner</p>
+                                <p>サーバーオーナー</p>
                             </div>
                             <div class="icon"><i class="fa fa-user"></i></div>
                             <a href="{{ route('admin.users.view', $server->user->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
+                                詳細はこちら <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>
@@ -162,11 +162,11 @@
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->node->name, 16) }}</h3>
-                                <p>Server Node</p>
+                                <p>サーバーノード</p>
                             </div>
                             <div class="icon"><i class="fa fa-codepen"></i></div>
                             <a href="{{ route('admin.nodes.view', $server->node->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
+                                詳細はこちら <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>

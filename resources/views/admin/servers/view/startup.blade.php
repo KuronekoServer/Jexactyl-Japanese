@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>Control startup command as well as variables.</small></h1>
+    <h1>{{ $server->name }}<small>変数だけでなく、起動コマンドも制御する。</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li><a href="{{ route('admin.servers') }}">Servers</a></li>
@@ -21,20 +21,20 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Startup Command Modification</h3>
+                    <h3 class="box-title">起動コマンドの変更</h3>
                 </div>
                 <div class="box-body">
-                    <label for="pStartup" class="form-label">Startup Command</label>
+                    <label for="pStartup" class="form-label">起動時のコマンド</label>
                     <input id="pStartup" name="startup" class="form-control" type="text" value="{{ old('startup', $server->startup) }}" />
-                    <p class="small text-muted">Edit your server's startup command here. The following variables are available by default: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>.</p>
+                    <p class="small text-muted">ここで、サーバーの起動コマンドを編集します。デフォルトでは以下の変数が利用可能です。: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>.</p>
                 </div>
                 <div class="box-body">
-                    <label for="pDefaultStartupCommand" class="form-label">Default Service Start Command</label>
+                    <label for="pDefaultStartupCommand" class="form-label">デフォルトのサービス開始コマンド</label>
                     <input id="pDefaultStartupCommand" class="form-control" type="text" readonly />
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-primary btn-sm pull-right">Save Modifications</button>
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">変更の保存</button>
                 </div>
             </div>
         </div>
@@ -43,16 +43,16 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Service Configuration</h3>
+                    <h3 class="box-title">サービス構成</h3>
                 </div>
                 <div class="box-body row">
                     <div class="col-xs-12">
                         <p class="small text-danger">
-                            Changing any of the below values will result in the server processing a re-install command. The server will be stopped and will then proceed.
-                            If you would like the service scripts to not run, ensure the box is checked at the bottom.
+                            以下の値のいずれかを変更すると、サーバーは再インストールコマンドを処理するようになります。サーバーは停止し、その後処理を行います。
+                            サービススクリプトを実行しないようにしたい場合は、一番下のボックスにチェックが入っていることを確認してください。
                         </p>
                         <p class="small text-danger">
-                            <strong>This is a destructive operation in many cases. This server will be stopped immediately in order for this action to proceed.</strong>
+                            <strong>これは多くの場合、破壊的な操作です。この操作を行うために、このサーバーは直ちに停止されます。</strong>
                         </p>
                     </div>
                     <div class="form-group col-xs-12">
@@ -66,32 +66,32 @@
                                 >{{ $nest->name }}</option>
                             @endforeach
                         </select>
-                        <p class="small text-muted no-margin">Select the Nest that this server will be grouped into.</p>
+                        <p class="small text-muted no-margin">このサーバーがグループ化されるネストを選択します。</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <label for="pEggId">Egg</label>
                         <select name="egg_id" id="pEggId" class="form-control"></select>
-                        <p class="small text-muted no-margin">Select the Egg that will provide processing data for this server.</p>
+                        <p class="small text-muted no-margin">このサーバーに処理データを提供するEggを選択します。</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input id="pSkipScripting" name="skip_scripts" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
-                            <label for="pSkipScripting" class="strong">Skip Egg Install Script</label>
+                            <label for="pSkipScripting" class="strong">スキップEggインストールスクリプト</label>
                         </div>
-                        <p class="small text-muted no-margin">If the selected Egg has an install script attached to it, the script will run during install. If you would like to skip this step, check this box.</p>
+                        <p class="small text-muted no-margin">選択したEggにインストールスクリプトが付属している場合、インストール中にスクリプトが実行されます。このステップをスキップしたい場合は、このボックスにチェックを入れてください。</p>
                     </div>
                 </div>
             </div>
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Docker Image Configuration</h3>
+                    <h3 class="box-title">Dockerイメージの構成</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pDockerImage">Image</label>
+                        <label for="pDockerImage">イメージ</label>
                         <select id="pDockerImage" name="docker_image" class="form-control"></select>
                         <input id="pDockerImageCustom" name="custom_docker_image" value="{{ old('custom_docker_image') }}" class="form-control" placeholder="Or enter a custom image..." style="margin-top:1rem"/>
-                        <p class="small text-muted no-margin">This is the Docker image that will be used to run this server. Select an image from the dropdown or enter a custom image in the text field above.</p>
+                        <p class="small text-muted no-margin">これは、このサーバーを実行するために使用されるDockerイメージです。ドロップダウンからイメージを選択するか、上のテキストフィールドにカスタムイメージを入力してください。</p>
                     </div>
                 </div>
             </div>

@@ -53,11 +53,11 @@
                                 </td>
                                 <td class="text-center">
                                     @if($server->isSuspended())
-                                        <span class="label bg-maroon">Suspended</span>
+                                        <span class="label bg-maroon">停止中</span>
                                     @elseif(! $server->isInstalled())
-                                        <span class="label label-warning">Installing</span>
+                                        <span class="label label-warning">インストール中</span>
                                     @else
-                                        <span class="label label-success">Active</span>
+                                        <span class="label label-success">アクティブ</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
