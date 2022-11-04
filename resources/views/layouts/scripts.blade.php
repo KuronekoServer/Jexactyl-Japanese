@@ -1,1 +1,1 @@
-{{-- Just here as a binder for dynamically rendered content. --}}
+{{-- ここでは、動的にレンダリングされるコンテンツのバインダーとしてのみ使用します。 --}}

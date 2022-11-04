@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    List Servers
+    サーバー一覧
 @endsection
 
 @section('content-header')
-    <h1>Servers<small>All servers available on the system.</small></h1>
+    <h1>Servers<small>システム上で利用可能なすべてのサーバー。</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">Servers</li>
+        <li><a href="{{ route('admin.index') }}">管理者</a></li>
+        <li class="active">サーバー</li>
     </ol>
 @endsection
 
@@ -17,7 +17,7 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Server List</h3>
+                <h3 class="box-title">サーバー一覧</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.servers') }}" method="GET">
                         <div class="input-group input-group-sm">
@@ -34,11 +34,11 @@
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>Server Name</th>
+                            <th>サーバー名</th>
                             <th>UUID</th>
-                            <th>Owner</th>
-                            <th>Node</th>
-                            <th>Connection</th>
+                            <th>オーナー</th>
+                            <th>ノード</th>
+                            <th>接続</th>
                             <th></th>
                             <th></th>
                         </tr>

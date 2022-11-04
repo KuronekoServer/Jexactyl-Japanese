@@ -37,12 +37,15 @@ const DiscordFormContainer = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <p css={tw`text-neutral-500 text-xs mt-6 sm:float-left`}>
                     &copy; <a href={'https://jexactyl.com'}>Jexactyl,</a> built on{' '}
-                    <a href={'https://pterodactyl.io'}>Pterodactyl.</a>
+                    <a href={'https://pterodactyl.io'}>Pterodactyl.</a>translation{' '}
+                    <a href={'https://kuroneko6423.com'}>KuronekoServer.</a>
                 </p>
                 <p css={tw`text-neutral-500 text-xs mt-6 sm:float-right`}>
                     <a href={'https://jexactyl.com'}> Site </a>
                     &bull;
                     <a href={'https://github.com/jexactyl/jexactyl'}> GitHub </a>
+                    &bull;
+                    <a href={'https://github.com/KuronekoServer/Jexactyl-Japanese'}> 日本語GitHub </a>
                 </p>
             </Wrapper>
         </div>

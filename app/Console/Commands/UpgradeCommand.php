@@ -13,13 +13,13 @@ class UpgradeCommand extends Command
     protected const DEFAULT_URL = 'https://github.com/jexactyl/jexactyl/releases/%s/panel.tar.gz';
 
     protected $signature = 'p:upgrade
-        {--user= : The user that PHP runs under. All files will be owned by this user.}
-        {--group= : The group that PHP runs under. All files will be owned by this group.}
-        {--url= : The specific archive to download.}
-        {--release= : A specific version to download from GitHub. Leave blank to use latest.}
-        {--skip-download : If set no archive will be downloaded.}';
+        {--user= : PHP が実行されるユーザー。すべてのファイルの所有者はこのユーザーになります。}
+        {--group= : PHP が動作するグループ。すべてのファイルの所有者はこのグループになります。}
+        {--url= : ダウンロードするアーカイブを指定します。}
+        {--release= : GitHubからダウンロードする特定のバージョン。最新版を使用する場合は空白にしてください。}
+        {--skip-download : この場合、アーカイブはダウンロードされません。}';
 
-    protected $description = 'Downloads a new archive from Jexactyl\'s GitHub and executes the upgrade commands.';
+    protected $description = 'JexactylのGitHubから新しいアーカイブをダウンロードし、アップグレードコマンドを実行します。';
 
     /**
      * Executes an upgrade command which will run through all of our standard
@@ -35,20 +35,20 @@ class UpgradeCommand extends Command
     {
         $skipDownload = $this->option('skip-download');
         if (!$skipDownload) {
-            $this->output->warning('This command does not verify the integrity of downloaded assets. Please ensure that you trust the download source before continuing. If you do not wish to download an archive, please indicate that using the --skip-download flag, or answering "no" to the question below.');
-            $this->output->comment('Download Source (set with --url=):');
+            $this->output->warning('このコマンドは、ダウンロードしたアセットの完全性を確認するものではありません。ダウンロードを続ける前に、ダウンロード元が信頼できることを確認してください。アーカイブをダウンロードしたくない場合は、-skip-download フラグを使用するか、以下の質問に「no」と答えてください。');
+            $this->output->comment('ダウンロード元 (set with --url=):');
             $this->line($this->getUrl());
         }
 
         if (version_compare(PHP_VERSION, '8.0') < 0) {
-            $this->error('Cannot execute self-upgrade process. The minimum required PHP version required is 8.0, you have [' . PHP_VERSION . '].');
+            $this->error('セルフアップグレード処理を実行できません。必要なPHPの最低バージョンは8.0です。 [' . PHP_VERSION . '].');
         }
 
         $user = 'www-data';
         $group = 'www-data';
         if ($this->input->isInteractive()) {
             if (!$skipDownload) {
-                $skipDownload = !$this->confirm('Would you like to download and unpack the archive files for the latest version?', true);
+                $skipDownload = !$this->confirm('最新版のアーカイブファイルをダウンロードし、解凍してみませんか？', true);
             }
 
             if (is_null($this->option('user'))) {
@@ -57,7 +57,7 @@ class UpgradeCommand extends Command
 
                 if (!$this->confirm("Your webserver user has been detected as <fg=blue>[{$user}]:</> is this correct?", true)) {
                     $user = $this->anticipate(
-                        'Please enter the name of the user running your webserver process. This varies from system to system, but is generally "www-data", "nginx", or "apache".',
+                        'webサーバプロセスを実行しているユーザー名を入力してください。これはシステムによって異なりますが、一般的には "www-data", "nginx", または "apache" です。',
                         [
                             'www-data',
                             'nginx',
@@ -73,7 +73,7 @@ class UpgradeCommand extends Command
 
                 if (!$this->confirm("Your webserver group has been detected as <fg=blue>[{$group}]:</> is this correct?", true)) {
                     $group = $this->anticipate(
-                        'Please enter the name of the group running your webserver process. Normally this is the same as your user.',
+                        'ウェブサーバプロセスを実行しているグループ名を入力してください。通常、これはあなたのユーザーと同じです。',
                         [
                             'www-data',
                             'nginx',
@@ -83,8 +83,8 @@ class UpgradeCommand extends Command
                 }
             }
 
-            if (!$this->confirm('Are you sure you want to run the upgrade process for your Panel?')) {
-                $this->warn('Upgrade process terminated by user.');
+            if (!$this->confirm('Panel のアップグレードプロセスを実行することは間違いないですか？')) {
+                $this->warn('ユーザーによってアップグレードプロセスが終了されました。');
 
                 return;
             }
@@ -174,7 +174,7 @@ class UpgradeCommand extends Command
         });
 
         $this->newLine(2);
-        $this->info('Panel has been successfully upgraded. Please ensure you also update any Wings instances: https://pterodactyl.io/wings/1.0/upgrading.html');
+        $this->info('Panel は正常にアップグレードされました。Wings インスタンスも更新してください。: https://pterodactyl.io/wings/1.0/upgrading.html');
     }
 
     protected function withProgress(ProgressBar $bar, Closure $callback)

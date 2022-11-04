@@ -81,19 +81,19 @@
                             @endforeach
                         </select>
 
-                        <p class="small text-muted no-margin">The node which this server will be deployed to.</p>
+                        <p class="small text-muted no-margin">このサーバーがデプロイされるノード。</p>
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="pAllocation">Default Allocation</label>
+                        <label for="pAllocation">デフォルトの割り当て</label>
                         <select id="pAllocation" name="allocation_id" class="form-control"></select>
-                        <p class="small text-muted no-margin">The main allocation that will be assigned to this server.</p>
+                        <p class="small text-muted no-margin">このサーバーに割り当てられる主な割り当て。</p>
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="pAllocationAdditional">Additional Allocation(s)</label>
+                        <label for="pAllocationAdditional">追加配分(s)</label>
                         <select id="pAllocationAdditional" name="allocation_additional[]" class="form-control" multiple></select>
-                        <p class="small text-muted no-margin">Additional allocations to assign to this server on creation.</p>
+                        <p class="small text-muted no-margin">作成時にこのサーバーに割り当てる追加の割り振り。</p>
                     </div>
                 </div>
             </div>
@@ -105,16 +105,16 @@
             <div class="box">
                 <div class="overlay" id="allocationLoader" style="display:none;"><i class="fa fa-refresh fa-spin"></i></div>
                 <div class="box-header with-border">
-                    <h3 class="box-title">Application Feature Limits</h3>
+                    <h3 class="box-title">アプリケーションの機能制限</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pDatabaseLimit" class="control-label">Database Limit</label>
+                        <label for="pDatabaseLimit" class="control-label">データベースの上限</label>
                         <div>
                             <input type="text" id="pDatabaseLimit" name="database_limit" class="form-control" value="{{ old('database_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of databases a user is allowed to create for this server.</p>
+                        <p class="text-muted small">このサーバーでユーザーが作成できるデータベースの総数。</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pAllocationLimit" class="control-label">Allocation Limit</label>
@@ -124,11 +124,11 @@
                         <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
                     </div>
                     <div class="form-group col-xs-6">
-                        <label for="pBackupLimit" class="control-label">Backup Limit</label>
+                        <label for="pBackupLimit" class="control-label">バックアップ上限</label>
                         <div>
                             <input type="text" id="pBackupLimit" name="backup_limit" class="form-control" value="{{ old('backup_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of backups that can be created for this server.</p>
+                        <p class="text-muted small">このサーバーで作成可能なバックアップの総数です。</p>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Resource Management</h3>
+                    <h3 class="box-title">リソース管理</h3>
                 </div>
 
                 <div class="box-body row">
@@ -160,20 +160,20 @@
                             <input type="text" id="pThreads" name="threads" class="form-control" value="{{ old('threads') }}" />
                         </div>
 
-                        <p class="text-muted small"><strong>Advanced:</strong> Enter the specific CPU threads that this process can run on, or leave blank to allow all threads. This can be a single number, or a comma separated list. Example: <code>0</code>, <code>0-1,3</code>, or <code>0,1,3,4</code>.</p>
+                        <p class="text-muted small"><strong>Advanced:</strong> このプロセスを実行できる特定の CPU スレッドを入力するか、空白のままにしてすべてのスレッドを許可します。これは、単一の数値またはカンマ区切りのリストにすることができます。例： <code>0</code>, <code>0-1,3</code>, または <code>0,1,3,4</code>.</p>
                     </div>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pMemory">Memory</label>
+                        <label for="pMemory">メモリ</label>
 
                         <div class="input-group">
                             <input type="text" id="pMemory" name="memory" class="form-control" value="{{ old('memory') }}" />
                             <span class="input-group-addon">MB</span>
                         </div>
 
-                        <p class="text-muted small">The maximum amount of memory allowed for this container. Setting this to <code>0</code> will allow unlimited memory in a container.</p>
+                        <p class="text-muted small">このコンテナに許可されているメモリの最大量。これを <code>0</code> に設定すると、コンテナに無制限のメモリが許可されます。</p>
                     </div>
 
                     <div class="form-group col-xs-6">
@@ -184,24 +184,24 @@
                             <span class="input-group-addon">MB</span>
                         </div>
 
-                        <p class="text-muted small">Setting this to <code>0</code> will disable swap space on this server. Setting to <code>-1</code> will allow unlimited swap.</p>
+                        <p class="text-muted small">これを <code>0</code> に設定すると、このサーバーのスワップ領域が無効になります。  <code>-1</code> に設定すると、無制限のスワップが許可されます。</p>
                     </div>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pDisk">Disk Space</label>
+                        <label for="pDisk">ディスク容量</label>
 
                         <div class="input-group">
                             <input type="text" id="pDisk" name="disk" class="form-control" value="{{ old('disk') }}" />
                             <span class="input-group-addon">MB</span>
                         </div>
 
-                        <p class="text-muted small">This server will not be allowed to boot if it is using more than this amount of space. If a server goes over this limit while running it will be safely stopped and locked until enough space is available. Set to <code>0</code> to allow unlimited disk usage.</p>
+                        <p class="text-muted small">この容量を超える容量を使用している場合、このサーバーは起動できません。サーバーが実行中にこの制限を超えると、サーバーは安全に停止され、十分なスペースが利用可能になるまでロックされます。無制限のディスク使用を許可するには、<code>0</code> に設定します。</p>
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="pIO">Block IO Weight</label>
+                        <label for="pIO">ブロックIO重量</label>
 
                         <div>
                             <input type="text" id="pIO" name="io" class="form-control" value="{{ old('io', 500) }}" />
@@ -212,10 +212,10 @@
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input type="checkbox" id="pOomDisabled" name="oom_disabled" value="0" {{ \Pterodactyl\Helpers\Utilities::checked('oom_disabled', 0) }} />
-                            <label for="pOomDisabled" class="strong">Enable OOM Killer</label>
+                            <label for="pOomDisabled" class="strong">OOMキラーを有効にする</label>
                         </div>
 
-                        <p class="small text-muted no-margin">Terminates the server if it breaches the memory limits. Enabling OOM killer may cause server processes to exit unexpectedly.</p>
+                        <p class="small text-muted no-margin">メモリ制限を突破した場合、サーバーを終了させます。OOM killer を有効にすると、サーバープロセスが予期せず終了することがあります。</p>
                     </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nest Configuration</h3>
+                    <h3 class="box-title">ネストの構成</h3>
                 </div>
 
                 <div class="box-body row">
@@ -243,21 +243,21 @@
                             @endforeach
                         </select>
 
-                        <p class="small text-muted no-margin">Select the Nest that this server will be grouped under.</p>
+                        <p class="small text-muted no-margin">このサーバーがグループ化されるネストを選択します。</p>
                     </div>
 
                     <div class="form-group col-xs-12">
                         <label for="pEggId">Egg</label>
                         <select id="pEggId" name="egg_id" class="form-control"></select>
-                        <p class="small text-muted no-margin">Select the Egg that will define how this server should operate.</p>
+                        <p class="small text-muted no-margin">このサーバーがどのように動作するかを定義するEggを選択します。</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input type="checkbox" id="pSkipScripting" name="skip_scripts" value="1" {{ \Pterodactyl\Helpers\Utilities::checked('skip_scripts', 0) }} />
-                            <label for="pSkipScripting" class="strong">Skip Egg Install Script</label>
+                            <label for="pSkipScripting" class="strong">スキップEggインストールスクリプト</label>
                         </div>
 
-                        <p class="small text-muted no-margin">If the selected Egg has an install script attached to it, the script will run during the install. If you would like to skip this step, check this box.</p>
+                        <p class="small text-muted no-margin">選択したEggにインストールスクリプトが付属している場合、インストール中にスクリプトが実行されます。このステップをスキップしたい場合は、このボックスにチェックを入れてください。</p>
                     </div>
                 </div>
             </div>
@@ -266,7 +266,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Docker Configuration</h3>
+                    <h3 class="box-title">Dockerの設定</h3>
                 </div>
 
                 <div class="box-body row">
@@ -274,7 +274,7 @@
                         <label for="pDefaultContainer">Docker Image</label>
                         <select id="pDefaultContainer" name="image" class="form-control"></select>
                         <input id="pDefaultContainerCustom" name="custom_image" value="{{ old('custom_image') }}" class="form-control" placeholder="Or enter a custom image..." style="margin-top:1rem"/>
-                        <p class="small text-muted no-margin">This is the default Docker image that will be used to run this server. Select an image from the dropdown above, or enter a custom image in the text field above.</p>
+                        <p class="small text-muted no-margin">これは、このサーバーを実行するために使用されるデフォルトのDockerイメージです。上のドロップダウンからイメージを選択するか、上のテキストフィールドにカスタムイメージを入力してください。</p>
                     </div>
                 </div>
             </div>
@@ -285,19 +285,19 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Startup Configuration</h3>
+                    <h3 class="box-title">起動時の設定</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-12">
-                        <label for="pStartup">Startup Command</label>
+                        <label for="pStartup">起動時のコマンド</label>
                         <input type="text" id="pStartup" name="startup" value="{{ old('startup') }}" class="form-control" />
-                        <p class="small text-muted no-margin">The following data substitutes are available for the startup command: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>. They will be replaced with the allocated memory, server IP, and server port respectively.</p>
+                        <p class="small text-muted no-margin">起動コマンドには、以下のデータ代入が可能です。: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>. これらは、それぞれ割り当てられたメモリ、サーバーIP、サーバーポートに置き換えられます。</p>
                     </div>
                 </div>
 
                 <div class="box-header with-border" style="margin-top:-10px;">
-                    <h3 class="box-title">Service Variables</h3>
+                    <h3 class="box-title">サービス変数</h3>
                 </div>
 
                 <div class="box-body row" id="appendVariablesTo"></div>
