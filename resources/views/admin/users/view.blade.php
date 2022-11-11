@@ -8,8 +8,8 @@
 @section('content-header')
     <h1>{{ $user->name_first }} {{ $user->name_last}}<small>{{ $user->username }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.users') }}">Users</a></li>
+        <li><a href="{{ route('admin.index') }}">管理者</a></li>
+        <li><a href="{{ route('admin.users') }}">ユーザー</a></li>
         <li class="active">{{ $user->username }}</li>
     </ol>
 @endsection
@@ -31,32 +31,32 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">ユーザーネーム</label>
+                            <label for="registered" class="control-label">ユーザー名</label>
                             <div>
                                 <input type="text" name="username" value="{{ $user->username }}" class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">ユーザーの氏名</label>
+                            <label for="registered" class="control-label">クライアント名</label>
                             <div>
                                 <input type="text" name="name_first" value="{{ $user->name_first }}" class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">ユーザーの姓</label>
+                            <label for="registered" class="control-label">クライアントの姓</label>
                             <div>
                                 <input type="text" name="name_last" value="{{ $user->name_last }}" class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">デフォルト言語設定</label>
+                            <label class="control-label">既定の言語設定</label>
                             <div>
                                 <select name="language" class="form-control">
                                     @foreach($languages as $key => $value)
                                         <option value="{{ $key }}" @if($user->language === $key) selected @endif>{{ $value }}</option>
                                     @endforeach
                                 </select>
-                                <p class="text-muted"><small>ユーザーのパネルを表示する際に使用するデフォルトの言語設定。</small></p>
+                                <p class="text-muted"><small>このユーザーのパネルをレンダリングするときに使用するデフォルトの言語。</small></p>
                             </div>
                         </div>
                     </div>

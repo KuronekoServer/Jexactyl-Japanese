@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Application API
+アプリケーションAPI
 @endsection
 
 @section('content-header')
-    <h1>Application API<small>Control access credentials for managing this Panel via the API.</small></h1>
+    <h1>アプリケーションAPI<small>API を介してこの Panel を管理するためのアクセス認証情報を制御します。</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">Application API</li>
+        <li class="active">アプリケーションAPI</li>
     </ol>
 @endsection
 
@@ -17,18 +17,18 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Credentials List</h3>
+                    <h3 class="box-title">資格証明書リスト</h3>
                     <div class="box-tools">
-                        <a href="{{ route('admin.api.new') }}" class="btn btn-sm btn-primary">Create New</a>
+                        <a href="{{ route('admin.api.new') }}" class="btn btn-sm btn-primary">新規作成</a>
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>Key</th>
-                            <th>Memo</th>
-                            <th>Last Used</th>
-                            <th>Created</th>
+                            <th>鍵</th>
+                            <th>メモ</th>
+                            <th>最後に使用したもの</th>
+                            <th>作成</th>
                             <th></th>
                         </tr>
                         @foreach($keys as $key)
@@ -66,8 +66,8 @@
                 event.preventDefault();
                 swal({
                     type: 'error',
-                    title: 'Revoke API Key',
-                    text: 'Once this API key is revoked any applications currently using it will stop working.',
+                    title: 'APIキーの取り消し',
+                    text: 'このAPIキーを失効させると、現在使用しているアプリケーションはすべて動作しなくなります。',
                     showCancelButton: true,
                     allowOutsideClick: true,
                     closeOnConfirm: false,
@@ -93,7 +93,7 @@
                         swal({
                             type: 'error',
                             title: 'Whoops!',
-                            text: 'An error occurred while attempting to revoke this key.'
+                            text: 'この鍵を失効させようとしたときにエラーが発生しました。'
                         });
                     });
                 });

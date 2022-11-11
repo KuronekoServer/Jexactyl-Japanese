@@ -177,7 +177,7 @@ $style = [
                                         <p style="{{ $style['paragraph-sub'] }}">
                                             &copy; {{ date('Y') }}
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
-                                            無断転載を禁じます。
+                                            All rights reserved.
                                         </p>
                                     </td>
                                 </tr>

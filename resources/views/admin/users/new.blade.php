@@ -29,19 +29,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="username" class="control-label">ユーザーネーム</label>
+                        <label for="username" class="control-label">ユーザー名</label>
                         <div>
                             <input type="text" autocomplete="off" name="username" value="{{ old('username') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_first" class="control-label">ユーザーの氏名</label>
+                        <label for="name_first" class="control-label">クライアント名</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_first" value="{{ old('name_first') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_last" class="control-label">ユーザーの姓</label>
+                        <label for="name_last" class="control-label">クライアントの姓</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_last" value="{{ old('name_last') }}" class="form-control" />
                         </div>
@@ -86,7 +86,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Password</h3>
+                    <h3 class="box-title">パスワード</h3>
                 </div>
                 <div class="box-body">
                     <div class="alert alert-info">
